@@ -5,10 +5,12 @@ window._ = require('lodash');
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
+require('./plugins/element.js');
+require('./plugins/axios.js');
 
-window.axios = require('axios');
+// window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
