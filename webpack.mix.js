@@ -11,14 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').vue()
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-        require('autoprefixer'),
-    ])
-    .webpackConfig(require('./webpack.config'));
+const path=require('path');
 
-if (mix.inProduction()) {
-    mix.version();
-}
+mix.js('resources/js/app.js', 'public/js')
+    .vue()
+    .postCss('resources/css/app.css', 'public/css', [require('tailwindcss'),])
+    .webpackConfig({
+        resolve:{
+            alias:{
+                "@":path.resolve(__dirname,"resources/js"),
+            },
+        }
+    })
