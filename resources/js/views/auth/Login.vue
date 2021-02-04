@@ -25,7 +25,7 @@
                       size="normal"
                       clearable
                     ></el-input>
-
+                    <error name="mobile"/>
                     <!-- <input id="email" type="text" class="flex-grow h-8 px-2 border rounded border-grey-400" name="email" value="" placeholder="Email"> -->
                   </div>
                   <div class="flex flex-col mt-4">
@@ -36,11 +36,12 @@
                       clearable
                       show-password
                     ></el-input>
+                    <error name="password"/>
 
                     <!-- <input id="password" type="password" class="flex-grow h-8 px-2 rounded border border-grey-400" name="password" required placeholder="Password"> -->
                   </div>
                   <div class="flex items-center mt-4">
-                    <captcha v-model="form.captcha" ref='captcha'/>
+                    <captcha v-model="form.captcha" ref="captcha" />
                   </div>
                   <div class="flex items-center mt-4">
                     <input
@@ -58,17 +59,17 @@
                     <button
                       type="button"
                       class="bg-blue-500 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-4 rounded"
-                      @click='onSubmit()'
+                      @click="onSubmit()"
                     >
                       登录
                     </button>
                   </div>
                 </form>
-                <wfooter/>
+                <wfooter />
               </div>
             </div>
           </div>
-          
+
           <!-- <img src="/captcha"/> -->
           <div
             class="hidden md:block md:w-1/2 rounded-r-lg"
@@ -85,24 +86,33 @@
 </template>
 
 <script>
-import Wfooter from './Footer.vue' 
+import Wfooter from "./Footer.vue";
 export default {
-  route: { path: "/login", meta: { guest: true } },
-  components:{Wfooter},
+  route: { path: "/login",meta: { guest: true } },
+  components: { Wfooter },
   data() {
     return {
-      form: { mobile: "18888888888", password: "admin888",remember:false,captcha:{}},
+      form: {
+        mobile: "18888888888",
+        password: "admin888",
+        remember: false,
+        captcha: {},
+      },
     };
   },
-  methods:{ 
-      onSubmit() {
-          this.axios.post('login',this.form).then(({token})=>{
-            localStorage.setItem('token',token)
-          }).finally(_=>{
-            this.$refs.captcha.get()
-          });
-      }
-  }
+  methods: {
+    onSubmit() {
+      this.axios
+        .post("login", this.form)
+        .then(({ token }) => {
+          localStorage.setItem("token", token);
+          location.href='/'
+        })
+        .finally((_) => {
+          this.$refs.captcha.get();
+        });
+    },
+  },
 };
 </script>
 

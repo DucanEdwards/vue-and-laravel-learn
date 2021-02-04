@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('app');
+    return 'home';
 });
 
-Route::get('/{module}/{param?}', function () {
+// Route::get('/{module}/{param?}', function () {
+//     return view('app');
+// })->where('module', 'auth|login|register|site|system');
+
+//后备路由（没有可匹配路由时执行这里）
+Route::fallback(function () {
     return view('app');
-})->where('module', 'auth|login|register|site|system');
+});

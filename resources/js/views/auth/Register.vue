@@ -114,7 +114,7 @@
 <script>
 import Wfooter from './Footer.vue' 
 export default {
-  route: { path: "/register" ,meta:{guest:true}},
+  route: { path: "/register"},
   components:{Wfooter},
 };
 </script>

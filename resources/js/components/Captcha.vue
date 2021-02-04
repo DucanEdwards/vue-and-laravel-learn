@@ -1,8 +1,11 @@
 <template>
-  <div class="flex justify-between">
+  <div>
+    <div class="flex justify-between">
     <el-input v-model="content" placeholder="" size="normal" clearable class="mr-2">
     </el-input>
     <img :src="captcha.img" alt="" class="rounded-sm cursor-pointer border-gray-200" @click="get()"/>
+  </div>
+  <error name='captcha.content'/>
   </div>
 </template>
 

@@ -1,25 +1,29 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import routes from './routers'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import routes from "./routers";
+import store from "@/store";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const router = new VueRouter({
     routes,
-    mode:'history'
-})
+    mode: "history"
+});
 
-const isLogin =Boolean(localStorage.getItem('token'))
-router.beforeEach((to, from, next) => {
-    if (to.meta.guest && isLogin) {
-        location.href='/'
+const isLogin = Boolean(localStorage.getItem("token"));
+router.beforeEach(async (to, from, next) => {
+    if (isLogin){
+        await store.dispatch("getUserInfo")
     }
-    else if (to.meta.auth && !isLogin){
-        location.href ='/login'
+    if (to.matched.some(route => route.meta.auth) && !isLogin) {
+        // 需要验证未登录
+        next("/login");
+    } else if (to.matched.some(route => route.meta.guest) && isLogin) {
+        // 游客访问但已经登录
+        location.href = "/";
+    } else {
+        next();
     }
-    else {
-        next()
-    }
-})
+});
 
 export default router;

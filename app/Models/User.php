@@ -42,4 +42,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends=[
+        'icon'
+    ] ;
+    
+    // 计算属性
+    public function getIconAttribute() {
+        return $this['avatar']??url('/images/user.jpeg');
+    }
 }
