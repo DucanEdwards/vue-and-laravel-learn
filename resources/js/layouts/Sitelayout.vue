@@ -1,10 +1,11 @@
 <template>
   <div class="admin">
-    <top-menu />
-    <quick-menu />
+    <TopMenu />
+    <QuickMenu />
     <div class="border p-4 rounded-sm bg-white mx-5 mt-10">
       <router-view />
-    </div>
+  </div>
+    {{Auth.user().name}}
   </div>
 </template>
 

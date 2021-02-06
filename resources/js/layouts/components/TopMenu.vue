@@ -58,7 +58,7 @@
           >
             <span
               class="avatar avatar-sm"
-              :style="`background-image: url(${$store.state.user.icon})`"
+              :style="`background-image: url(${Auth.user().icon})`"
             ></span>
           </a>
           <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

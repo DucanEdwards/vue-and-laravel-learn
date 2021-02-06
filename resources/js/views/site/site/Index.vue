@@ -1,6 +1,11 @@
 <template>
   <div>
-    <el-button type="primary" size="mini" @click="$router.push('site/site/create')">添加站点</el-button>
+    <el-button
+      type="primary"
+      size="mini"
+      @click="$router.push('site/site/create')"
+      >添加站点</el-button
+    >
   </div>
 </template>
 
